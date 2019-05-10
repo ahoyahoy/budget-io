@@ -1,11 +1,23 @@
 /*jshint node:true*/
 /* global require, module */
-var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var EmberApp = require("ember-cli/lib/broccoli/ember-app")
+var autoprefixer = require("autoprefixer")
+var CssImport = require("postcss-import")
+var CssNested = require("postcss-nested")
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
-  });
+    hinting: false,
+    sassOptions: {
+    },
+    babel: {
+      optional: [
+        "es7.decorators",
+        "es7.classProperties",
+        "es7.asyncFunctions"
+      ]
+    }
+  })
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
@@ -20,5 +32,20 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  return app.toTree();
-};
+  /*
+  app.import("vendor/amcharts/amcharts.js")
+  app.import("vendor/amcharts/serial.js")
+  app.import("vendor/amcharts/plugins/responsive/responsive.js")
+  */
+
+  //app.import("vendor/dygraph.js")
+  //app.import("vendor/dygraph-sync.js")
+
+  //app.import("vendor/nv.d3.js")
+
+  app.import("vendor/jquery-ui.min.js")
+  app.import("vendor/jquery-scrolltofixed.js")
+
+
+  return app.toTree()
+}

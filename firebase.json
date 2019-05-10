@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "firebase": "ahoyahoy-budgetio",
+    "public": "dist",
+    "rewrites": [{
+      "source": "**",
+      "destination": "/index.html"
+    }]
+  }
+}

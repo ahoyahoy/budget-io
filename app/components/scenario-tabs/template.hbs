@@ -1,0 +1,7 @@
+{{#sortable-group direction="x" tagName="div" classNames="items-list layour-row" onChange="reorderItems" as |group|}}
+  {{#each sortedScenario as |scenario|}}
+    {{#sortable-item tagName="div" classNames="flex-auto" model=scenario group=group onDragStart="dragStarted" onDragStop="dragStopped"}}
+      <div class="item {{if (eq selected.id scenario.id) 'active'}}" onClick={{action 'selectScenario' scenario}}>{{scenario.title}}</div>
+    {{/sortable-item}}
+  {{/each}}
+{{/sortable-group}}

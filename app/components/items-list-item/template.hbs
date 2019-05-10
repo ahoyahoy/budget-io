@@ -1,0 +1,25 @@
+{{#paper-button class="row" onClick=(action (route-action 'editItem' item element.id))}}
+    <div class="sum">
+        {{#if (gt item.sum 0)}}
+            <span class="positive">+</span>
+        {{else}}
+            <span class="negative">-</span>
+        {{/if}}
+        <span class="currency">$</span><span class="value">{{abs item.sum}}</span>
+    </div>
+
+    <div class="title">
+        {{~#if isDependency~}}
+            <span class="dependency-icon">
+                {{paper-icon "arrow-forward"}}
+            </span>
+        {{~/if~}}{{~#if isInstance~}}
+            <span class="instance-icon">
+                {{paper-icon "arrow-downward"}}
+            </span>
+        {{~/if~}}
+        <span>{{item.title}}</span>
+    </div>
+{{/paper-button}}
+
+<div class="checkbox">{{#paper-checkbox value=item.enabled onChange=(action (mut item.enabled))}}{{/paper-checkbox}}</div>

@@ -1,0 +1,123 @@
+& {
+	position: relative;
+
+	&.is-hover-day {
+		background: rgba(250, 0, 255, 0.06);
+	}
+}
+
+button.row {
+	border-radius: 0;
+	text-align: left;
+	width: 100%;
+	padding: 3px 40px;
+	min-height: auto;
+	margin: 0;
+	line-height: initial;
+	font-size: 1.2rem;
+	text-transform: none;
+
+	
+	&:hover {
+		background-color: rgba(255, 247, 0, 0.08) !important;
+	}
+}
+
+.checkbox {
+	position: absolute;
+	top: 0.2rem;
+	left: 10px;
+	opacity: 0;
+	transition: opacity 1s;
+
+	.md-icon {
+		background-color: transparent !important;
+		border-width: 1px;
+		border-color: #BBB;
+
+		&:after {
+			border-color: #d5d5d5 !important;
+		}
+	}
+
+	&:hover {
+		.md-icon {
+			color: #d5d5d5;
+		}
+	}
+}
+
+.controls {
+	position: absolute;
+	top: -9px;
+	right: 0px;
+	opacity: 0;
+	transition: opacity 1s;
+
+	button {
+		margin: 0;
+
+		md-icon {
+			color: #d5d5d5 !important;
+		}
+	}
+}
+
+.title {
+	md-icon {
+		font-size: .9rem;
+		position: relative;
+		top: .2rem;
+		//padding-right: 10px;
+	}
+}
+
+.sum {
+	float: right;
+	text-align: right;
+	font-size: 1.2rem;
+
+	span {
+		&.currency {
+			opacity: .7;
+		}
+
+		&.positive, &.negative {
+			position: relative;
+			left: 5px;
+		}
+
+		&.positive {
+			color: #13ab1f;
+		}
+
+		&.negative {
+			color: #f30000;
+		}
+	}
+
+}
+
+
+&:hover {
+	.checkbox, .controls {
+		opacity: 1;
+	}
+}
+
+/*
+&.is-instance {
+	.title span {
+		color: #dccf9d;
+	}
+}
+*/
+
+&.disabled {
+	.title, .sum {
+		text-decoration: line-through;
+		span {
+			opacity: .5;
+		}
+	}
+}

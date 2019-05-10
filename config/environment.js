@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'ahoyahoy-budgetio',
+    podModulePrefix: 'ahoyahoy-budgetio',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
@@ -20,7 +21,17 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+    firebase: {                                                
+      apiKey: 'AIzaSyBSf-fCu_TfHFQRuPSSNSqlOpQIf96zG3E',
+      authDomain: 'ahoyahoy-budgetio.firebaseapp.com',
+      databaseURL: 'https://ahoyahoy-budgetio.firebaseio.com',
+      storageBucket: 'ahoyahoy-budgetio.appspot.com',
+    },                                                         
+    torii: {
+      sessionServiceName: 'session'
+    },
+    DB_DATE_FORMAT: 'YYYY-MM-DD'
   };
 
   if (environment === 'development') {
@@ -44,6 +55,16 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
 
+  }
+
+  ENV.contentSecurityPolicy = {
+    'default-src': "'none'",
+    'script-src': "'self' 'unsafe-inline'",
+    'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
+    'font-src': "'self' fonts.gstatic.com",
+    'connect-src': "'self'",
+    'img-src': "'self' data:",
+    'media-src': "'self'"
   }
 
   return ENV;

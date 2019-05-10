@@ -1,0 +1,43 @@
+{{cat-select
+  value=(readonly budget)
+  parent=dialogElement
+  items=budgets
+  budget=budget
+  modelName="scenario"
+  newItemEnabled=true
+  update=(action (route-action "changeBudget") value="id")
+}}
+
+
+{{#if showDialog}}
+  {{#paper-dialog class="flex-xs-75 flex-gt-xs-50" onClose=(action "closeDialog" "cancel") origin=dialogOrigin clickOutsideToClose=true}}
+    {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+        <h2>Mango (Fruit)</h2>
+        <span class="flex"></span>
+        {{#paper-button iconButton=true onClick=(action "closeDialog" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+
+    {{#paper-dialog-content}}
+        <p>
+          {{one-way-input
+              value=newBudget.title
+              update=(action (mut newBudget.title))
+              placeholder="Title"
+          }}
+        </p>
+        <div class="date">
+          {{date-select value=newBudget.from update=(action (mut newBudget.from))}}
+        </div>
+        <div class="date">
+          {{date-select value=newBudget.to update=(action (mut newBudget.to))}}
+        </div>
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+      {{#paper-button onClick=(action "closeDialog" "create")}}Create{{/paper-button}}
+    {{/paper-dialog-actions}}
+  {{/paper-dialog}}
+{{/if}}

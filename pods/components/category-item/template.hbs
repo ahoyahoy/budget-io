@@ -1,0 +1,21 @@
+{{#paper-item}}
+    {{#paper-checkbox value=item.show onChange=(action (mut item.show))}}{{/paper-checkbox}}
+    <p>{{item.title}}</p>
+    {{#paper-menu width=2 as |menu|}}
+        {{#paper-button }}
+            <div class="md-secondary md-menu-origin color-picker-item" ></div>
+        {{/paper-button}}
+    {{else}}
+        {{#paper-grid-list md-cols="6" md-row-height="1:1"
+        md-gutter="1px"}}
+
+            {{#each colors as |color|}}
+                {{#paper-grid-tile}}
+                    <div class="color-picker-item" ></div>
+                {{/paper-grid-tile}}
+            {{/each}}
+        
+        {{/paper-grid-list}}
+
+    {{/paper-menu}}
+{{/paper-item}}

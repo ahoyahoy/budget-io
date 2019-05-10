@@ -1,0 +1,18 @@
+{{#paper-select options=content label=label required=true selected=selected onChange=(action "update") as |item|}}
+  {{#if (eq item.type 'special')}}
+    <div class="custom add-new">{{item.title}}</div>
+  {{else}}
+    <div class="custom">{{item.title}}</div>
+  {{/if}}
+{{/paper-select}}
+{{paper-icon "expand-more"}}
+{{#if newItemEnabled}}
+  {{cat-dialog
+    parent=newItemDialogContainer
+    origin=(concat "#" element.id)
+    showDialog=showDialog
+    formContent=(concat "cat-form-" modelName)
+    saveItem="saveNewItem"
+    options=items
+  }}
+{{/if}}

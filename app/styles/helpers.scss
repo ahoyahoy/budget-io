@@ -1,0 +1,56 @@
+@mixin display-flex() {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: flex;
+}
+
+@mixin flex-direction($dir) {
+  -webkit-flex-direction: $dir;
+	-moz-flex-direction: $dir;
+	-ms-flex-direction: $dir;
+	flex-direction: $dir;
+}
+	
+@mixin justify-content($justify) {
+  -webkit-justify-content: $justify;
+	-moz-justify-content: $justify;
+	-ms-justify-content: $justify;
+	justify-content: $justify;
+}
+
+@mixin flex($n) {
+	-webkit-flex: $n;
+	-moz-flex: $n;
+	-ms-flex: $n;
+	flex: $n;
+}
+
+@mixin hbox {
+  @include display-flex();
+	@include flex-direction(row);
+}
+
+@mixin vbox {
+  @include display-flex();
+	@include flex-direction(column);
+}
+
+@mixin space-between {
+  @include justify-content(space-between);
+}
+
+@mixin keyframes($animationName) {
+	@-webkit-keyframes $animationName {
+		@content;
+	}
+	@-moz-keyframes $animationName {
+		@content;
+	}
+	@-o-keyframes $animationName {
+		@content;
+	}
+	@keyframes $animationName {
+		@content;
+	}
+}

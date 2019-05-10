@@ -1,0 +1,20 @@
+.warning-header {
+  background: #fdffda;
+  padding: 20px 140px 20px 40px;
+  position: relative;
+
+  md-icon {
+    font-size: 1rem;
+    opacity: .6;
+    padding-right: 5px;
+    position: relative;
+    top: .1rem;
+  }
+
+  button {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    margin-top: -19px;
+  }
+}

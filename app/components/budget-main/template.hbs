@@ -1,0 +1,7 @@
+<div id="main-dialog-container"></div>
+{{yield (hash
+  view=(component "budget-view")
+  editor=(component "budget-editor")
+  items=items
+  cumulatedItemsDaily=cumulatedItemsDaily
+)}}

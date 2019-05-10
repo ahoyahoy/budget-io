@@ -1,0 +1,46 @@
+{{#sortable-group tagName="div" classNames="items-list layout-column" onChange="reorderItems" as |group|}}
+  {{#each sortedWigets as |widget|}}
+    {{#sortable-item tagName="div" model=widget group=group onDragStart="dragStarted" onDragStop="dragStopped" handle=".handle"}}
+      {{widget-item widget=widget budget=budget items=items}}
+    {{/sortable-item}}
+  {{/each}}
+{{/sortable-group}}
+
+
+{{#paper-button onClick=(action "dialog")}}Dialog{{/paper-button}}
+
+{{#if showDialog}}
+  {{#paper-dialog
+    class="flex-60"
+    onClose=(action "closeDialog" "close")
+    parent="#main-dialog-container"
+  }}
+
+    <div id="item-form-dialog-container"></div>
+    {{#paper-form onSubmit=(action "saveNewItem") as |form|}}
+      {{#paper-dialog-content}}
+        <div>AHOY</div>
+
+        {{#paper-select
+          label="type"
+          options=types
+          onChange=(action (mut newType))
+          as |type|}}
+          {{type.title}}
+        {{/paper-select}}
+
+        {{#if newType}}
+          {{component (concat "widget-" newType.id "/settings") settings=newSettings budget=budget}}
+        {{/if}}
+      {{/paper-dialog-content}}
+
+      {{#paper-dialog-actions class="layout-row"}}
+        <span class="flex"></span>
+        {{#paper-button onClick=(action "closeDialog" "cancel")}}Cancel{{/paper-button}}
+        {{#form.submit-button raised=true primary=true disabled=(or form.isInvalid submited)}}OK{{/form.submit-button}}
+      {{/paper-dialog-actions}}
+    {{/paper-form}}
+
+  {{/paper-dialog}}
+
+{{/if}}

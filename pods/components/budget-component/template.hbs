@@ -1,0 +1,23 @@
+<div {{action "test"}}>update</div>
+
+{{#ember-collection class="vertical-demo" items=sortedItems cell-layout=(mixed-grid-layout sortedItems)
+    as |item index| }}
+
+
+	{{#if (eq item.type 'month-header')}}
+		{{#if item.show.length}}
+			<h1>{{moment-format item.date 'MMMM'}} ({{item.show.length}})</h1>
+		{{/if}}
+	{{else if (eq item.type 'special-empty')}}
+		<div></div>
+	{{else if (eq item.type 'special-first')}}
+		<div class="first"></div>
+	{{else if (eq item.type 'special-today')}}
+		<h3>Today is here {{moment-format item.date 'YYYY-MM-DD'}}</h3>
+	{{else}}
+		{{#if item.category.show}}
+			{{budget-item item=item budget=budget}}
+		{{/if}}
+	{{/if}}
+
+{{/ember-collection}}

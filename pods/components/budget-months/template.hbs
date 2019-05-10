@@ -1,0 +1,12 @@
+{{#each groups as |group|}}
+        <h1>{{group.key}} - {{group.count}} - {{group.showCount}}</h1>
+        
+        {{#each group.items as |item|}}
+            {{#if item.instance}}
+                {{budget-item item=item.instance budget=budget timestamp=item.timestamp }}
+            {{else}}
+                {{budget-item item=item budget=budget }}
+            {{/if}}
+
+        {{/each}}
+{{/each}}

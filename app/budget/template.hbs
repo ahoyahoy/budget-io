@@ -1,0 +1,15 @@
+{{budget-header budget=model}}
+{{#budget-main
+  budget=model
+  as |main|}}
+    {{#main.view as |view|}}
+      {{view.axis budget=model}}
+      {{view.widgets budget=model items=main.cumulatedItemsDaily}}
+    {{/main.view}}
+    {{#main.editor as |editor|}}
+      {{editor.form budget=model parent=editor.element scenario=scenario}}
+      {{editor.list items=main.items scenario=scenario}}
+      {{editor.scenario budget=model selected=scenario}}
+    {{/main.editor}}
+{{/budget-main}}
+{{budget-footer}}

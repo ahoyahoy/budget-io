@@ -1,0 +1,10 @@
+& {
+	background: #eaeaea;
+	height: 20px;
+	position: relative;
+	left: 5px;
+
+	& > div {
+		position: relative;
+	}
+}

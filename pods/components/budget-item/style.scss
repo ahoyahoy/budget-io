@@ -1,0 +1,76 @@
+& {
+	box-shadow: 0 1px 1px 0 rgba(50,50,50,.09);
+	transition: all .15s,.15s,.15s,.15s;
+	transition-property: opacity,left,top,width,height;
+	margin-bottom: .5rem;
+	overflow: visible;
+	background: white;
+	position: relative;
+
+	&.is-instance {
+		background: #fff3b6;
+	}
+
+	&.hidden {
+		display: none;
+	}
+
+	& > div {
+		padding: 5px;
+	}
+
+	.date {
+		font-size: .8rem;
+		color: #8a8a8a;
+		padding: 1rem 1rem 0 3rem;
+	}
+
+	.enabled {
+		position: absolute;
+		top: .5rem;
+		left: .5rem;
+	}
+
+	.controls {
+		position: absolute;
+		top: .5rem;
+		right: .5rem;
+	}
+	
+	.date, .scenario, .controls {
+		//flex: 2;
+	}
+	.title {
+		padding: 1rem;
+	}
+	.sum {
+		float: right;
+		text-align: right;
+		font-size: 1.2rem;
+		padding: 1rem;
+		padding-top: .8rem;
+		padding-bottom: 0;
+	}
+	.category {
+		float: left;
+	}
+	.scenario {
+		text-align: right;
+	}
+	.category, .scenario {
+		display: inline-block;
+		width: 50%;
+		font-size: .8rem;
+		padding: 0;
+
+		span {
+			display: block;
+			padding: .5rem 1rem;
+			
+			md-icon {
+				color: white;
+			}
+			
+		}
+	}
+}

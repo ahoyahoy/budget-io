@@ -1,0 +1,12 @@
+{{#if currentlyLoading}}
+	<section id="main" class="layout-row layout-align-center-center">
+		{{paper-progress-circular diameter=100}}
+	</section>
+{{else}}
+	{{#if session.isAuthenticated}}
+		{{outlet}}
+	{{else}}
+		<button {{action "signIn" "google"}}>Sign in with G</button>
+		<button {{action "signIn" "facebook"}}>Sign in with FB</button>
+	{{/if}}
+{{/if}}

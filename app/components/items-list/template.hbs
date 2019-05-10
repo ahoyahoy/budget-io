@@ -1,0 +1,33 @@
+{{#ember-collection class="items-list" items=sortedItems cell-layout=(mixed-grid-layout sortedItems)
+    as |item index| }}
+
+	{{#if (eq item.type 'month-header')}}
+	  <div class="month">
+			{{moment-format item.date 'MMMM'}}
+			<span class="count">{{item.items.length}}</span>
+			<span class="sum">
+				{{#if (gt item.sum 0)}}
+            <span class="positive">+</span>
+        {{else}}
+            <span class="negative">-</span>
+        {{/if}}
+        <span class="currency">$</span><span class="value">{{abs item.sum}}</span>
+			</span>
+		</div>
+	{{else if (eq item.type 'day-header')}}
+		<div class="day {{if (eq hoverDay item.day) 'hover'}}">
+			<span>
+				{{moment-format item.date 'dddd, MMM Do'}}
+			</span>
+		</div>
+	{{else if (eq item.type 'special-empty')}}
+		<div></div>
+	{{else if (eq item.type 'special-first')}}
+		<div class="first"></div>
+	{{else if (eq item.type 'special-today')}}
+		<div class="today"><em></em><span></span></div>
+	{{else}}
+		{{items-list-item item=item scenario=scenario hoverDay=hoverDay}}
+	{{/if}}
+
+{{/ember-collection}}

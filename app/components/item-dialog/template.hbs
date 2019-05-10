@@ -1,0 +1,19 @@
+{{#paper-button primary=true raised=true fab=true onClick=(action "show")}}{{paper-icon "add" size=36}}{{/paper-button}}
+
+{{#if showDialog}}
+  {{#custom-paper-dialog
+    class="flex-100 item-form-dialog"
+    onClose=(action "close" "close")
+    parent="#budget-editor-dialog-container"
+    origin=origin
+  }}
+
+    <div id="item-form-dialog-container"></div>
+
+    <div class="item-dialog-form-container {{if showFormDiv 'show'}}">
+      {{#if showForm}}
+        {{item-dialog-form budget=budget item=item selectedScenario=scenario isEditing=isEditing submit="submit" cancel="close" delete="delete"}}
+      {{/if}}
+    </div>
+  {{/custom-paper-dialog}}
+{{/if}}

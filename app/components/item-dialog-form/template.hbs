@@ -1,0 +1,71 @@
+{{#if isInstance}}
+  <div class="warning-header instance">
+    {{paper-icon "filter-none"}}
+    <span>Instance from <span class="date">{{item.instance.day}}</span></span>
+    {{#paper-button raised=true}}Split{{/paper-button}}
+  </div>
+{{/if}}
+
+{{#paper-form onSubmit=(action "submit") as |form|}}
+  {{#paper-dialog-content}}
+    {{form.input
+      label="Sum"
+      value=item.sum
+      onChange=(action (mut item.sum))
+      required=true
+      block=true
+    }}
+    
+    {{form.input
+      label="Title"
+      value=item.title
+      onChange=(action (mut item.title))
+      required=true
+      block=true
+    }}
+
+    {{date-select
+      label="Date"
+      value=(or item.day today)
+      update=(action (mut item.day))
+    }}
+
+    {{cat-select
+      label="Scenario"
+      value=(or item.scenario selectedScenario)
+      parent=dialogElement
+      items=budget.scenario
+      budget=budget
+      modelName="scenario"
+      newItemEnabled=true
+      newItemDialogContainer="#item-form-dialog-container"
+      update=(action (mut item.scenario))
+    }}
+    {{cat-select
+      label="Category"
+      value=item.category
+      parent=dialogElement
+      items=budget.categories
+      budget=budget
+      modelName="category"
+      newItemEnabled=true
+      newItemDialogContainer="#item-form-dialog-container"
+      update=(action (mut item.category))
+    }}
+    {{cat-select
+      label="Repeat"
+      value=(object-at 0 (filter-by "id" item.repeat repeats))
+      parent=dialogElement
+      items=repeats
+      update=(action (mut item.repeat))
+    }}
+
+  {{/paper-dialog-content}}
+
+  {{#paper-dialog-actions class="layout-row"}}
+    {{#paper-button onClick=(action "delete")}}Delete{{/paper-button}}
+    <span class="flex"></span>
+    {{#paper-button onClick=(action "cancel")}}Cancel{{/paper-button}}
+    {{#form.submit-button raised=true primary=true disabled=(or form.isInvalid submited)}}OK{{/form.submit-button}}
+  {{/paper-dialog-actions}}
+{{/paper-form}}

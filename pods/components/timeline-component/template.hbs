@@ -1,0 +1,7 @@
+<div>
+    {{#if grid}}
+        {{#each filteredItems as |item|}}
+            {{item-timeline item=item grid=grid from=budget.from mouseOver="itemMouseOver"}}
+        {{/each}}
+    {{/if}}
+</div>

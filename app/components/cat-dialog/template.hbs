@@ -1,0 +1,6 @@
+{{#if showDialog}}
+  {{#paper-dialog class="flex-100" onClose=(action "close" "close") parent=parent origin=origin closeTo=origin }}
+    <div id="cat-dialog-container"></div>
+    {{component formContent item=item options=options submit="formSubmit" cancel="close"}}
+  {{/paper-dialog}}
+{{/if}}

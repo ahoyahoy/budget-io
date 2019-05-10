@@ -1,0 +1,143 @@
+ & {
+  background: white;
+  height: 100%;
+  position: relative;
+ }
+
+ .items-list {
+  height: 100%;
+  position: relative;
+
+  & > {
+    cursor: default;
+  }
+
+  & > div, & > div > div, & > div > div > div {
+    width: 100% !important;
+  }
+
+  & > div > div > div:hover {
+    z-index: 9;
+  }
+}
+
+.day {
+  font-size: .8rem;
+  padding: 20px 40px 6px 40px;
+  color: #999;
+
+  &:after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: #f9f9f9;
+    position: absolute;
+    left: 0;
+    top: 8px;
+  }
+
+  &.hover {
+    &:before {
+      content: '';
+      display: block;
+      background: rgba(250, 0, 255, 0.06);
+      width: 100%;
+      position: absolute;
+      top: 8px;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+}
+
+.month {
+  font-size: 1.2rem;
+  padding: 30px 40px 6px 40px;
+  color: #0069ef;
+  position: relative;
+
+  &:after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: #f1f1f1;
+    position: absolute;
+    left: 0;
+    top: 8px;
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    background: rgba(0, 231, 255, 0.06);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 8px;
+    left: 0;
+  }
+
+  .count, .sum {
+    font-size: 0.9rem;
+    color: #999;
+    position: absolute;
+    bottom: 0.455rem;
+    margin-left: 5px;
+  }
+
+  .sum {
+    right: 40px;
+    color: #999;
+
+    &.currency {
+			opacity: .7;
+		}
+
+		&.positive, &.negative {
+			position: relative;
+			left: 5px;
+		}
+
+		&.positive {
+			color: #13ab1f;
+		}
+
+		&.negative {
+			color: #f30000;
+		}
+  }
+
+}
+
+.today {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+
+  em {
+    display: block;
+    position: absolute;
+    height: 1px;
+    top: 7px;
+    background: #d5d5d5;
+    width: 100%;
+  }
+
+  span {
+    text-align: right;
+    display: inline-block;
+    position: absolute;
+    top: -1px;
+    padding: 0 20px;
+    color: #9a9a9a;
+    z-index: 9000;
+
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #007bff;
+  }
+}

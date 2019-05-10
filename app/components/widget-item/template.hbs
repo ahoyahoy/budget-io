@@ -1,0 +1,45 @@
+{{#paper-card class="widget-card" as |card|}}
+  <div id="dialog-container-{{widget.id}}">
+    {{#card.header as |header|}}
+      {{#header.text as |text|}}
+        {{#text.title}}{{widget.type}}{{/text.title}}
+        {{#text.subhead}}subhead{{/text.subhead}}
+      {{/header.text}}
+      <div class="handle">
+        {{paper-icon "settings"}}
+      </div>
+      {{#paper-button iconButton=true class="settings-button" onClick=(action "dialog")}}
+        {{paper-icon "settings"}}
+      {{/paper-button}}
+    {{/card.header}}
+    {{#card.content}}
+      {{#if widget.type}}
+        {{component (concat "widget-" widget.type) widget=widget items=items budget=budget}}
+      {{/if}}
+    {{/card.content}}
+  </div>
+{{/paper-card}}
+
+
+{{#if showDialog}}
+  {{#paper-dialog
+    class="flex-60"
+    onClose=(action "closeDialog" "close")
+    parent="#main-dialog-container"
+    origin=(concat '#dialog-container-' widget.id)
+  }}
+    {{#paper-form onSubmit=(action "save") as |form|}}
+      {{#paper-dialog-content}}
+        {{component (concat "widget-" widget.type "/settings") widget=widget settings=settings budget=budget}}
+      {{/paper-dialog-content}}
+
+      {{#paper-dialog-actions class="layout-row"}}
+        {{#paper-button onClick=(action "destroy")}}Delete{{/paper-button}}
+        <span class="flex"></span>
+        {{#paper-button onClick=(action "closeDialog" "cancel")}}Cancel{{/paper-button}}
+        {{#form.submit-button raised=true primary=true disabled=(or form.isInvalid submited)}}OK{{/form.submit-button}}
+      {{/paper-dialog-actions}}
+    {{/paper-form}}
+
+  {{/paper-dialog}}
+{{/if}}

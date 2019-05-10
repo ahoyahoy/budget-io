@@ -1,0 +1,59 @@
+{{#paper-card class="widget-card" as |card|}}
+  {{#card.content}}
+    {{timeline-axis budget=budget cursor=cursor chartWidth=chartWidth chartMouseMove="showCursorAt" hoverChart=hoverChart}}
+  {{/card.content}}
+{{/paper-card}}
+
+{{#sortable-group tagName="div" onChange="reorderItems" as |group|}}
+  {{#each sortedWigets as |widget|}}
+    {{#sortable-item tagName="div" model=widget group=group handle=".handle"}}
+      {{#paper-card class="widget-card" as |card|}}
+        {{#card.header class="handle" as |header|}}
+          {{#header.text as |text|}}
+            {{#text.title}}{{widget.type}}{{/text.title}}
+            {{#text.subhead}}subhead{{/text.subhead}}
+          {{/header.text}}
+          {{#paper-button iconButton=true class="settings-button"}}{{paper-icon "settings"}}{{/paper-button}}
+        {{/card.header}}
+        {{#card.content}}
+          {{#if (eq widget.type 'main')}}
+            {{am-chart budget=budget items=items cursor=cursor chartMouseMove="showCursorAt" hoverChart=hoverChart}}
+          {{/if}}
+          {{#if (eq widget.type 'timeline')}}
+            {{timeline-component budget=budget items=items timelineItemMouseOver="showCursorAt" chartWidth=chartWidth category=widget.settings.category width=chartWidth hoverChart=hoverChart}}
+          {{/if}}
+        {{/card.content}}
+      {{/paper-card}}
+    {{/sortable-item}}
+  {{/each}}
+{{/sortable-group}}
+
+
+
+{{#paper-button raised=true primary=true onClick=(action "xx")}}Button with action{{/paper-button}}
+
+{{#if showDialog}}
+  {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel") origin=dialogOrigin clickOutsideToClose=true}}
+    {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+        <h2>Mango (Fruit)</h2>
+        <span class="flex"></span>
+        {{#paper-button iconButton=true onClick=(action "closeDialog" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+
+    {{#paper-dialog-content}}
+        <p>
+          The mango is a juicy stone fruit belonging to the genus Mangifera, consisting of numerous tropical fruiting trees, cultivated mostly for edible fruit. The majority of these species are found in nature as wild mangoes. They all belong to the flowering plant family Anacardiaceae. The mango is native to South and Southeast Asia, from where it has been distributed worldwide to become one of the most cultivated fruits in the tropics.
+        </p>
+        <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" src="http://weknowyourdreamz.com/images/mango/mango-01.jpg">
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      {{#paper-button href="http://en.wikipedia.org/wiki/Mango" target="_blank"}}More on Wikipedia{{/paper-button}}
+      <span class="flex"></span>
+      {{#paper-button onClick=(action "closeDialog" "cancel")}}Cancel{{/paper-button}}
+      {{#paper-button onClick=(action "closeDialog" "ok")}}OK{{/paper-button}}
+    {{/paper-dialog-actions}}
+  {{/paper-dialog}}
+{{/if}}

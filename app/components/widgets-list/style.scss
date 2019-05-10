@@ -1,0 +1,27 @@
+.items-list {
+  height: 100%;
+  position: relative;
+
+  .sortable-item {
+    position: relative;
+
+    &.is-dragging {
+      z-index: 10; 
+    }
+
+    md-card-content {
+      padding-top: 0;
+      transition: .2s;
+    }
+  }
+}
+
+&.dragging {
+  .sortable-item {
+    md-card-content {
+      max-height: 0;
+      padding-bottom: 0;
+      overflow: hidden;
+    }
+  }
+}

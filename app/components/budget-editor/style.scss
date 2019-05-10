@@ -1,0 +1,12 @@
+& {
+  width: 430px;
+  min-width: 430px;
+  //overflow: hidden;
+  position: relative;
+
+  background: yellow;
+
+  
+  //@include display-flex();
+  //@include flex(1);
+}

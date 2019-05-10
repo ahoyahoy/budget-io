@@ -1,0 +1,9 @@
+widget-theme-form
+{{settings.category}}
+{{cat-select
+  value=(object-at 0 (filter-by "id" widget.settings.category budget.categories))
+  items=budget.categories
+  budget=budget
+  modelName="category"
+  update=(action (mut settings.category) value="id")
+}}

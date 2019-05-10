@@ -1,0 +1,26 @@
+{{#if editable}}
+    {{item.height}}
+    {{item-form budget=budget item=item done="done"}}
+    <div {{action 'done'}}>done</div>
+    <div {{action 'destroy'}}>delete</div>
+{{else}}
+    {{#if item.instance}}
+        <div class="enabled">{{#paper-checkbox value=item.instance.enabled onChange=(action (mut item.instance.enabled))}}{{/paper-checkbox}}</div>
+    {{else}}
+        <div class="enabled">{{#paper-checkbox value=item.enabled onChange=(action (mut item.enabled))}}{{/paper-checkbox}}</div>
+    {{/if}}
+    <div class="date">{{moment-format item.date "dddd MM/DD/YY"}}, <span>{{moment-from-now item.date}}</span></div>
+    <div class="sum">{{item.sum}}</div>
+    <div class="title">{{item.title}}</div>
+    <div class="category"><span>{{item.category.title}}</span></div>
+    <div class="scenario"><span>{{item.scenario.title}}</span></div>
+   
+    
+    {{#unless item.instance}}
+        <div class="controls">
+            <div {{action 'edit'}}>E</div>
+        </div>
+    {{/unless}}
+{{/if}}
+
+{{paper-divider}}

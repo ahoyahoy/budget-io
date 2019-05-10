@@ -1,0 +1,12 @@
+{{#paper-form onSubmit=(action "submit") as |form|}}
+  {{#paper-dialog-content}}
+    {{form.input label="Title" value=item.title onChange=(action (mut item.title)) required=true }}
+    {{form.input label="Color" value=item.color onChange=(action (mut item.color)) required=true }}
+  {{/paper-dialog-content}}
+
+  {{#paper-dialog-actions class="layout-row"}}
+    <span class="flex"></span>
+    {{#paper-button onClick=(action "cancel")}}Cancel{{/paper-button}}
+    {{#form.submit-button raised=true primary=true disabled=form.isInvalid}}OK{{/form.submit-button}}
+  {{/paper-dialog-actions}}
+{{/paper-form}}

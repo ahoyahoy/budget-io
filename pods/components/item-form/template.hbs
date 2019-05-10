@@ -1,0 +1,56 @@
+{{#if item}}
+    {{one-way-input
+        value=item.sum
+        update=(action (mut sum))
+        placeholder="Sum"
+    }}
+    {{one-way-input
+        value=item.title
+        update=(action (mut title))
+        placeholder="Title"
+    }}
+
+    {{date-select value=item.day update=(action (mut day))}}
+
+
+    {{cat-select data=budget item="scenario" items="scenarios" selectedValue=item.scenario select-item="setCat" prompt="Scenario"}}
+    {{cat-select data=budget item="category" items="categories" selectedValue=item.category select-item="setCat" prompt="Category"}}
+    {{ember-selectize
+        content=repeats
+        optionLabelPath="title"
+        optionValuePath="id"
+        selection=repeatItem
+    }}
+
+    {{#paper-button raised=true primary=true onClick=(action "saveItem")}}Save Item{{/paper-button}}
+
+    <ul>
+        <li>{{item.scenario.title}} {{item.scenario.id}}</li>
+        <li>{{item.scenario}}</li>
+        <li>{{item.category.title}}</li>
+        <li>{{item.day}}</li>
+        <li>{{item.title}}</li>
+        <li>{{item.sum}}</li>
+        <li>{{item.title}}</li>
+    </ul>
+{{else}}
+
+    {{input value=sum placeholder="Sum"}}
+    {{input value=title placeholder="Title"}}
+
+    {{date-select value=today update=(action (mut day))}}
+
+
+    {{cat-select data=budget item="scenario" items="scenarios" select-item="setCat" prompt="Scenario"}}
+    {{cat-select data=budget item="category" items="categories" select-item="setCat" prompt="Category"}}
+
+    {{ember-selectize
+        content=repeats
+        optionLabelPath="content.title"
+        optionValuePath="content.id"
+        selection=repeat
+    }}
+
+    {{#paper-button raised=true primary=true onClick=(action "addItem")}}Add Item{{/paper-button}}
+{{/if}}
+

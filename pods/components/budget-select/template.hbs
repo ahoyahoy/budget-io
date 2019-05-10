@@ -1,0 +1,83 @@
+<section id="budget-select">
+    <div class="select">
+        {{#paper-select
+            options=budgetSelectItems
+            selected=selectedValue
+            onChange=(action (mut selectedValue))
+            as |budget|
+        }}
+            {{budget.title}}
+        {{/paper-select}}
+        
+
+        {{#paper-menu as |menu|}}
+          {{#menu.trigger}}
+            {{#paper-button class="layout-align-start-center"}}
+              {{selectedBudget.title}} {{paper-icon "arrow-drop-down"}}
+            {{/paper-button}}
+          {{/menu.trigger}}
+          {{#menu.content width=4 as |content|}}
+            {{#each budgets as |budget|}}
+              {{#content.menu-item onClick=(route-action "changeBudget" budget.id)}}
+                <span>{{budget.title}}</span>
+              {{/content.menu-item}}
+            {{/each}}
+
+            {{#content.menu-item onClick="openSomething" disabled=true}}
+              {{paper-icon "adb"}}
+              <span>This is disabled.</span>
+            {{/content.menu-item}}
+
+            {{paper-divider}}
+
+            {{#content.menu-item onClick="newBudget"}}
+              <span>Create New Budget</span>
+            {{/content.menu-item}}
+          {{/menu.content}}
+        {{/paper-menu}}
+    </div>
+    <div class="date">
+        {{date-select value=selectedBudget.from update=(action (mut selectedBudget.from))}}
+    </div>
+    <div class="date">
+        {{date-select value=selectedBudget.to update=(action (mut selectedBudget.to))}}
+    </div>
+		<div {{action 'newBudget'}}>
+			x
+		</div>
+</section>
+
+
+
+{{#if showDialog}}
+  {{#paper-dialog class="flex-xs-75 flex-gt-xs-50" onClose=(action "closeDialog" "cancel") origin=dialogOrigin clickOutsideToClose=true}}
+    {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+        <h2>Mango (Fruit)</h2>
+        <span class="flex"></span>
+        {{#paper-button iconButton=true onClick=(action "closeDialog" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+
+    {{#paper-dialog-content}}
+        <p>
+          {{one-way-input
+              value=newBudget.title
+              update=(action (mut newBudget.title))
+              placeholder="Title"
+          }}
+        </p>
+        <div class="date">
+          {{date-select value=newBudget.from update=(action (mut newBudget.from))}}
+        </div>
+        <div class="date">
+          {{date-select value=newBudget.to update=(action (mut newBudget.to))}}
+        </div>
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      <span class="flex"></span>
+      {{#paper-button onClick=(action "closeDialog" "create")}}Create{{/paper-button}}
+    {{/paper-dialog-actions}}
+  {{/paper-dialog}}
+{{/if}}

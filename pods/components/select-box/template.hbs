@@ -1,0 +1,17 @@
+<select disabled={{disabled}} class="{{class}}" {{action 'change' on='change'}}>
+  {{#if prompt}}
+    <option disabled selected={{is-not selection}}>
+      {{prompt}}
+    </option>
+  {{/if}}
+  {{#each content as |item|}}
+    <option selected={{eq selection item}}>
+      {{read-path item optionLabelPath}}
+    </option>
+  {{/each}}
+  {{#if create}}
+    <option value="new">
+      + Create New
+      </option>
+  {{/if}}
+</select>

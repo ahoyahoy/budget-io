@@ -1,0 +1,21 @@
+
+
+<h2>New Post</h2>
+<ul class="post-publish">
+  <li>
+    {{input value=title placeholder="Title"}}
+  </li>
+  <li>
+    {{category-select selectedValue=category prompt="Select"}}
+  </li>
+  <li>
+    <button {{action "publishPost"}}>Publish</button>
+    <button {{action "publishPost2"}}>Publish2</button>
+  </li>
+</ul>
+
+<section>
+{{#each model as |item| }}
+  {{budget-item item=item}}
+{{/each}}
+</section>
